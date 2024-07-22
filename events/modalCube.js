@@ -1,9 +1,19 @@
 const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
+const fs = require('fs');
 const cubeCalc = require("../components/cubeCalc.js");
+const path = "./components/json/cube.json";
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
+        const usr = interaction.user.id;
+        const fsData = fs.readFileSync(path, {encoding: 'utf-8', flag: 'r'});
+        const needs = JSON.parse(fsData);
+        let key = '';
+
+        if(Object.hasOwn(needs, usr)) { key = needs[usr] }
+        else { key = ['0','0','0','0','0'] };
+
         if(interaction.commandName === '금제'){
             const modal = new ModalBuilder()
                 .setCustomId('cube')
@@ -14,42 +24,42 @@ module.exports = {
                 .setLabel('1금제 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('1금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key[0]);
 
             const cubeSecondInput = new TextInputBuilder()
                 .setCustomId('cubeSecondInput')
                 .setLabel('2금제 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('2금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key[1]);
 
             const cubeThirdInput = new TextInputBuilder()
                 .setCustomId('cubeThirdInput')
                 .setLabel('3금제 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('3금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key[2]);
 
             const cubeFourthInput = new TextInputBuilder()
                 .setCustomId('cubeFourthInput')
                 .setLabel('4금제 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('4금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key[3]);
 
             const cubeFivethInput = new TextInputBuilder()
                 .setCustomId('cubeFivethInput')
                 .setLabel('5금제 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('5금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key[4]);
             
             const actionRowCubeFirst = new ActionRowBuilder().addComponents(cubeFirstInput);
             const actionRowCubeSecond = new ActionRowBuilder().addComponents(cubeSecondInput);
             const actionRowCubeThird = new ActionRowBuilder().addComponents(cubeThirdInput);
             const actionRowCubeFourth = new ActionRowBuilder().addComponents(cubeFourthInput);
             const actionRowCubeFiveth = new ActionRowBuilder().addComponents(cubeFivethInput);
-            
+
             modal.addComponents(actionRowCubeFirst, actionRowCubeSecond, actionRowCubeThird, actionRowCubeFourth, actionRowCubeFiveth);
     
             await interaction.showModal(modal);
@@ -64,6 +74,9 @@ module.exports = {
                     const cubeThirdValue = modalInteraction.fields.getTextInputValue('cubeThirdInput');
                     const cubeFourthValue = modalInteraction.fields.getTextInputValue('cubeFourthInput');
                     const cubeFivethValue = modalInteraction.fields.getTextInputValue('cubeFivethInput');
+
+                    needs[usr] = [cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue];
+                    fs.writeFileSync(path, JSON.stringify(needs));
 
                     const rewards = cubeCalc(cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue);
 

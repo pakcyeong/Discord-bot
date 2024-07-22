@@ -1,9 +1,19 @@
 const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
+const fs = require('fs');
 const cubeExCalc = require("../components/cubeExCalc.js");
+const path = "./components/json/cubeEx.json";
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
+        const usr = interaction.user.id;
+        const fsData = fs.readFileSync(path, {encoding: 'utf-8', flag: 'r'});
+        const needs = JSON.parse(fsData);
+        let key = '';
+
+        if(Object.hasOwn(needs, usr)) { key = needs[usr]; console.log(key); }
+        else { key = '0' };
+
         if(interaction.commandName === '해금'){
             const modal = new ModalBuilder()
                 .setCustomId('cubeEx')
@@ -14,7 +24,7 @@ module.exports = {
                 .setLabel('1해금 큐브')
                 .setStyle(TextInputStyle.Short)
                 .setPlaceholder('1금제 큐브 입장권 개수를 입력하세요.')
-                .setValue('0');
+                .setValue(key);
             
             const actionRowCubeExFirst = new ActionRowBuilder().addComponents(cubeExFirstInput);
             
@@ -29,6 +39,9 @@ module.exports = {
                 .then((modalInteraction) => {
                     const cubeExFirstValue = modalInteraction.fields.getTextInputValue('cubeExFirstInput');
                     
+                    needs[usr] = cubeExFirstValue;
+                    fs.writeFileSync(path, JSON.stringify(needs));
+
                     const rewards = cubeExCalc(cubeExFirstValue);
 
                     const cubeExEmbed = new EmbedBuilder()
