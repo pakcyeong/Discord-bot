@@ -1,9 +1,6 @@
 const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
@@ -23,14 +20,14 @@ for (const folder of commandFolders) {
 	}
 }
 
-const rest = new REST().setToken(process.env.DISCORD_BOT_KEY);
+const rest = new REST().setToken(DISCORD_BOT_KEY);
 
 (async () => {
 	try {
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		const data = await rest.put(
-			Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_GUILD_ID),
+			Routes.applicationGuildCommands(DISCORD_CLIENT_ID, DISCORD_GUILD_ID),
 			{ body: commands },
 		);
 
