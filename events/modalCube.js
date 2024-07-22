@@ -78,11 +78,12 @@ module.exports = {
                     needs[usr] = [cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue];
                     fs.writeFileSync(path, JSON.stringify(needs));
 
+                    const count = cubeFirstValue*1 + cubeSecondValue*1 + cubeThirdValue*1 + cubeFourthValue*1 + cubeFivethValue*1;
                     const rewards = cubeCalc(cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue);
 
                     const cubeEmbed = new EmbedBuilder()
                         .setTitle('큐브 (T3) 예상 보상')
-                        .setDescription(`입력한 큐브 ${cubeFirstValue*1 + cubeSecondValue*1 + cubeThirdValue*1 + cubeFourthValue*1 + cubeFivethValue*1 }수의 대한 예상 보상입니다.`)
+                        .setDescription(`입력한 큐브 \`${count}수\`의 대한 예상 보상입니다.`)
                         .addFields(
                             {
                                 name: '보석',

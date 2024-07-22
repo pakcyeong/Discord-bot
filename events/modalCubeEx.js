@@ -42,11 +42,12 @@ module.exports = {
                     needs[usr] = cubeExFirstValue;
                     fs.writeFileSync(path, JSON.stringify(needs));
 
+                    const count = cubeExFirstValue*1
                     const rewards = cubeExCalc(cubeExFirstValue);
 
                     const cubeExEmbed = new EmbedBuilder()
                         .setTitle('큐브 (T4) 예상 보상')
-                        .setDescription(`입력한 큐브 ${cubeExFirstValue*1}수의 대한 예상 보상입니다.`)
+                        .setDescription(`입력한 큐브 \`${count}수\`의 대한 예상 보상입니다.`)
                         .addFields(
                             {
                                 name: '보석',
