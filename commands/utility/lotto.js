@@ -17,7 +17,7 @@ module.exports = {
         if(prob === 1){
             await interaction.reply({contents: '이걸 강화에 성공했다. 스택 초기화다 음머'})
         }else{
-            await interaction.reply({contents: li[fail]});
+            await interaction.reply({contents: `${li[fail]}!`});
         }
     }
 }
