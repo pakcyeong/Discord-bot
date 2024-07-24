@@ -23,7 +23,7 @@ module.exports = {
         ];
         const fail = Math.floor(Math.random()*li.length);
         
-        if(prob > 15){
+        if(prob < 15){
             await interaction.reply({content: '강화에 성공했다. 스택 초기화다 음머'})
         }else{
             await interaction.reply({content: `${li[fail]}!`});
