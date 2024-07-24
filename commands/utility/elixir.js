@@ -31,6 +31,8 @@ module.exports = {
         }else if(num === 3){
             const prob = Math.floor(Math.random()*10);
             await interaction.reply({content: `${li[cmt]} \`+${prob-4}\`다 음머`});
+        }else{
+            await interaction.reply({content: `번호는 1~3번까지다 음머`, ephemeral: true });            
         }
     }
 }
