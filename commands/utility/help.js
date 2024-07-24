@@ -24,6 +24,10 @@ module.exports = {
                 {
                     name: '`/본캐` + 캐릭터명',
                     value: '유저의 원정대 중 최고 아이템 레벨을 가진 캐릭터를 조회합니다.'
+                },
+                {
+                    name: '`/강화`/',
+                    value: '로스트아크 강화 확률로 보는 오늘의 운세 입니다.'
                 }
             )
         await interaction.reply({ embeds: [ helpEmbed ], ephemeral: true })
