@@ -28,6 +28,10 @@ module.exports = {
                 {
                     name: '`/강화`/',
                     value: '로스트아크 강화 확률로 보는 오늘의 운세 입니다.'
+                },
+                {
+                    name: '`/현삭`/',
+                    value: '로스트아크 엘릭서 확률로 보는 오늘의 운세 입니다.'
                 }
             )
         await interaction.reply({ embeds: [ helpEmbed ], ephemeral: true })

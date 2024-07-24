@@ -27,7 +27,7 @@ module.exports = {
             await interaction.reply({content: `${li[cmt]} \`${prob}\`(이)다 음머`});
         }else if(num === 2){
             const prob = Math.floor(Math.random()*2);
-            await interaction.reply({content: `${li[cmt]} \`${prob}\`(이)다 음머`});
+            await interaction.reply({content: `${li[cmt]} \`${prob+2}\`(이)다 음머`});
         }else if(num === 3){
             const prob = Math.floor(Math.random()*10);
             await interaction.reply({content: `${li[cmt]} \`${prob-4}\`(이)다 음머`});
