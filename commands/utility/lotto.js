@@ -49,7 +49,7 @@ module.exports = {
                     await interaction.reply({content: `원트 ㅊㅊ, 스택 초기화다. 음머 \`현재 재련 단계 : ${key[0]*1}\` (장기 ${key[1]*1}%)`})
                 }
                 else{
-                    (key[1]*1)+=(graph[(key[0]*1)-10]/25);
+                    key[1] = (key[1]*1) + (graph[(key[0]*1)-10]/25);
                     data[usr] = key;
                     fs.writeFileSync(path,JSON.stringify(data));
                     await interaction.reply({content: `${li[fail]}! \`현재 재련 단계 : ${key[0]}\` (장기 ${key[1]*1}%)`});
