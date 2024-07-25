@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = '../../components/json/lotto.json';
 
 module.exports = {
-    cooldown: 1800,
     data: new SlashCommandBuilder()
         .setName("강화")
         .setDescription("로스트아크 강화 확률로 보는 오늘의 운세 입니다."),
