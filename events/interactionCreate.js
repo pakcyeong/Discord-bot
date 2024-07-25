@@ -7,6 +7,15 @@ module.exports = {
 
 		const command = interaction.client.commands.get(interaction.commandName);
 
+		if (!command) {
+			console.error(`No command matching ${interaction.commandName} was found.`);
+			return;
+		}
+
+		if (!cooldowns.has(command.data.name)) {
+			cooldowns.set(command.data.name, new Collection());
+		}
+
 		const { cooldowns } = interaction.client;
 
 		if (!cooldowns.has(command.data.name)) {
@@ -16,24 +25,19 @@ module.exports = {
 		const now = Date.now();
 		const timestamps = cooldowns.get(command.data.name);
 		const defaultCooldownDuration = 3;
-		const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1_000;
+		const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
 		if (timestamps.has(interaction.user.id)) {
 			const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
 
 			if (now < expirationTime) {
-				const expiredTimestamp = Math.round(expirationTime / 1_000);
-				return interaction.reply({ content: `잠시 기다려달라. 음머 \`${command.data.name}\`. 시간뒤에 다시 할 수 있다. <t:${expiredTimestamp}:R>.`, ephemeral: true });
+				const expiredTimestamp = Math.round(expirationTime / 1000);
+				return interaction.reply({ content: `잠시만 기다려 달라! 너는 이 시간 뒤에 할 수 있다. 음머 <t:${expiredTimestamp}:R>.`, ephemeral: true });
 			}
 		}
 
 		timestamps.set(interaction.user.id, now);
 		setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
-
-		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`);
-			return;
-		}
 
 		try {
 			await command.execute(interaction);
