@@ -34,7 +34,10 @@ module.exports = {
         ];
         const fail = Math.floor(Math.random()*li.length);
         
-        if(key[0]*1>26) {
+        if((key[0]*1)>26) {
+            await interaction.reply({content: `이미 최고 강화 단계에 도달 하셨습니다. 음머`})
+        }
+        else{
             if(prob < graph[(key[0]*1)-10]){
                 key[1] = 0;
                 data[usr] = key;
@@ -54,9 +57,6 @@ module.exports = {
                     await interaction.reply({content: `${li[fail]}! \`현재 재련 단계 : ${key[0]}\` (장기 ${key[1]*1}%)`});
                 }
             }
-        }
-        else{
-            await interaction.reply({content: `이미 최고 강화 단계에 도달 하셨습니다. 음머`})
         }
     }
 }
