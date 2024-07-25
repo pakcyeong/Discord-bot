@@ -40,12 +40,14 @@ module.exports = {
         else{
             if(prob < graph[(key[0]*1)-10]){
                 key[1] = 0;
+                key[0] = key[0]*1 + 1;
                 data[usr] = key;
                 fs.writeFileSync(path,JSON.stringify(data));
                 await interaction.reply({content: `강화에 성공했다. 음머 \`현재 재련 단계 : ${key[0]*1}\` (장기 ${key[1]*1}%)`})
             }else{
                 if(key[1]==100){
                     key[1] = 0;
+                    key[0] = key[0]*1 + 1;
                     data[usr] = key;
                     fs.writeFileSync(path,JSON.stringify(data));
                     await interaction.reply({content: `원트 ㅊㅊ, 스택 초기화다. 음머 \`현재 재련 단계 : ${key[0]*1}\` (장기 ${key[1]*1}%)`})
