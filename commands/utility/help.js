@@ -16,14 +16,6 @@ module.exports = {
                 {
                     name: '`/해금`',
                     value: '로스트아크 시즌3의 1개의 해금의 예상 보상을 알려줍니다.'
-                },
-                {
-                    name: '`/모집` + 레이드명',
-                    value: '로스트아크 레이드 파티를 모집합니다.'
-                },
-                {
-                    name: '`/본캐` + 캐릭터명',
-                    value: '유저의 원정대 중 최고 아이템 레벨을 가진 캐릭터를 조회합니다.'
                 }
             )
         await interaction.reply({ embeds: [ helpEmbed ], ephemeral: true })
