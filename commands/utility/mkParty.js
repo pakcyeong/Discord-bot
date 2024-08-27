@@ -57,7 +57,7 @@ module.exports = {
             components: [rowButtons]
         })
 
-        const collectorBtn = resBtn.createMessageComponentCollector({ ComponentType:ComponentType.Button, time: 3_600_000 })
+        const collectorBtn = resBtn.createMessageComponentCollector({ ComponentType:ComponentType.Button, time: 36_000_000 })
 
         // button abled
         collectorBtn.on('collect', async interactionBtn => {
