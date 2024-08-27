@@ -13,40 +13,40 @@ const {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('모집')
-        .setDescription('레이드 공대를 모집합니다.')
+        .setDescription('게임 할 사람을 모집합니다.')
         .addStringOption(option => 
             option
-                .setName('레이드명')
-                .setDescription('레이드 명')
+                .setName('게임명')
+                .setDescription('게임 명')
                 .setRequired(true)
         ),
     async execute(interaction) {
-        const raidName = interaction.options.getString('레이드명');
+        const raidName = interaction.options.getString('게임명');
         let msgEmbed = {
-            title: `${raidName} 레이드 공대를 모집합니다.`,
-            description: `신청 순으로 입력이 됩니다. 추가적인 파티 조정이 필요합니다.`,
+            title: `${raidName}을 함께할 사람을 모집합니다.`,
+            description: `신청 순으로 입력이 됩니다. 선택 후 변경이 되지 않습니다.`,
             author: {
                 name: interaction.user.globalName,
                 icon_url: interaction.user.displayAvatarURL()
             },
             fields: [
                 {
-                    name: `\`딜러\``, value: ``
+                    name: `\`참가\``, value: ``
                 },
                 {
-                    name: `\`서폿\``, value: ``
+                    name: `\`불참\``, value: ``
                 }
             ],
         }
 
         const firstButton = new ButtonBuilder()
             .setCustomId('dealer')
-            .setLabel('딜러')
+            .setLabel('참여')
             .setStyle(ButtonStyle.Primary);
 
         const secondButton = new ButtonBuilder()
             .setCustomId('supporter')
-            .setLabel('서폿')
+            .setLabel('불참')
             .setStyle(ButtonStyle.Success);
         
         const rowButtons = new ActionRowBuilder()
