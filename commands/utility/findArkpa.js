@@ -22,7 +22,7 @@ module.exports = {
             description: ``,
             author: {
                 name: interaction.user.globalName,
-                icon_url: interaction.user.displayAvartarURL()
+                icon_url: interaction.user.displayAvatarURL()
             },
             fields: [
                 {
