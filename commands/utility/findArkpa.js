@@ -14,8 +14,7 @@ module.exports = {
         ),
     async execute(interaction) {
         const usrName = interaction.options.getString('유저명');
-        const res = await arkpasv(usrName);
-        const usrData = JSON.parse(res);
+        const usrData = await arkpasv(usrName);
         console.log('앜패');
 
         let msgEmbed = {
