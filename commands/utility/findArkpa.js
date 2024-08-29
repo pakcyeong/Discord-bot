@@ -15,7 +15,6 @@ module.exports = {
     async execute(interaction) {
         const usrName = interaction.options.getString('유저명');
         const usrData = await arkpasv(usrName);
-        console.log(usrData);
 
         let msgEmbed = {
             title: `${usrName}`,
@@ -71,6 +70,7 @@ module.exports = {
                 })
             };
         }
+        console.log(msgEmbed);
         await interaction.reply({ embeds: [msgEmbed], ephemeral: true })
         
     }
