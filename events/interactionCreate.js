@@ -17,9 +17,9 @@ module.exports = {
 		} catch (error) {
 			console.error(error);
 			if (interaction.replied || interaction.deferred) {
-				await interaction.followUp({ content: '명령어 실행에서 문제가 발생했다 음머!', ephemeral: true });
+				await interaction.followUp({ content: '명령어 실행에서 문제가 발생했습니다. 잠시 후에 다시 사용해주세요', ephemeral: true });
 			} else {
-				await interaction.reply({ content: '명령어 실행에서 문제가 발생했다 음머!', ephemeral: true });
+				await interaction.reply({ content: '명령어 실행에서 문제가 발생했습니다. 잠시 후에 다시 사용해주세요', ephemeral: true });
 			}
 		}
 	},

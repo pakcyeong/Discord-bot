@@ -11,11 +11,15 @@ module.exports = {
             .addFields(
                 {
                     name: '`/금제`',
-                    value: '로스트아크 시즌2의 5개의 금제의 예상 보상을 알려줍니다.'
+                    value: '로스트아크 시즌2, 금제의 예상 보상을 알려줍니다.'
                 },
                 {
                     name: '`/해금`',
-                    value: '로스트아크 시즌3의 1개의 해금의 예상 보상을 알려줍니다.'
+                    value: '로스트아크 시즌3, 해금의 예상 보상을 알려줍니다.'
+                },
+                {
+                    name: '`/모집`',
+                    value: '함께 할 게임의 인원을 모집합니다.'
                 }
             )
         await interaction.reply({ embeds: [ helpEmbed ], ephemeral: true })
