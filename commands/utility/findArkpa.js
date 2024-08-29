@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const arkpasv = require('../../components/arkpasv');
-const errCong = require('../../components/embeds/errorEmbed');
-
+const regexp = require('../../components/regexp');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -59,15 +58,15 @@ module.exports = {
 
                 usrData.Effects.map(effect => {
                     if(effect.Name === 'enlightenment') { // 깨달음
-                        msgEmbed.fields[3].value.concat(`${effect.Description}
+                        msgEmbed.fields[3].value.concat(`${regexp(effect.Description)}
                         `);
                     }
                     else if (effect.Name === 'evolution') { // 진화
-                        msgEmbed.fields[2].value.concat(`${effect.Description}
+                        msgEmbed.fields[2].value.concat(`${regexp(effect.Description)}
                         `);
                     }
                     else if (effect.Name === 'leap') { // 도약
-                        msgEmbed.fields[4].value.concat(`${effect.Description}
+                        msgEmbed.fields[4].value.concat(`${regexp(effect.Description)}
                         `);
                     }
                 })
