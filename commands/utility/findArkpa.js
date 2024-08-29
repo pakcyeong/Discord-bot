@@ -15,7 +15,8 @@ module.exports = {
         ),
     async execute(interaction) {
         const usrName = interaction.options.getString('유저명');
-        const usrData = JSON.parse(await arkpasv(usrName));
+        const res = await arkpasv(usrName);
+        const usrData = JSON.parse(res);
 
         let msgEmbed = {
             title: `${usrName}`,
