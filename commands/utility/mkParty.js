@@ -44,9 +44,14 @@ module.exports = {
             .setCustomId('supporter')
             .setLabel('불참')
             .setStyle(ButtonStyle.Success);
+
+        const thirdButton = new ButtonBuilder()
+            .setCustomId('call')
+            .setLabel('참여자 호출')
+            .setStyle(ButtonStyle.Danger);
         
         const rowButtons = new ActionRowBuilder()
-            .addComponents(firstButton, secondButton);
+            .addComponents(firstButton, secondButton, thirdButton);
 
         const resBtn = await interaction.reply({
             embeds:[msgEmbed],
@@ -84,6 +89,13 @@ module.exports = {
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
                 return;
+            }
+
+            else if(interactionBtn.customId === 'call'){
+                const list = '';
+                conditionUp.map(usr => {
+
+                })
             }
         })
     }

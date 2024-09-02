@@ -5,7 +5,6 @@ function regexp(string){
     let tier = result.split(' ');
     const tierNum = tier[0].replace('티어', '');
     const str =  `\`T${tierNum}\` ${result.replace(tier[0], '')}`;
-    console.log(str);
 
     return str;
 }
