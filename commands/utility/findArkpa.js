@@ -18,23 +18,23 @@ module.exports = {
 
         let msgEmbed = {
             title: `${usrName}`,
-            description: ``,
+            description: `조회한 캐릭터의 아크패시브 결과 입니다.`,
             author: {
                 name: interaction.user.globalName,
                 icon_url: interaction.user.displayAvatarURL()
             },
             fields: [
                 {
-                    name: `\`포인트\``, value: ``
+                    name: `포인트`, value: ``
                 },
                 {
-                    name: `\`진화\``, value: ``, inline: true
+                    name: `진화`, value: ``, inline: true
                 },
                 {
-                    name: `\`깨달음\``, value: ``, inline: true
+                    name: `깨달음`, value: ``, inline: true
                 },
                 {
-                    name: `\`도약\``, value: ``, inline: true
+                    name: `도약`, value: ``, inline: true
                 }
             ],
         };

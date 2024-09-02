@@ -26,6 +26,6 @@ module.exports = {
                     value: '함께 할 게임의 인원을 모집합니다.'
                 }
             )
-        await interaction.reply({ embeds: [ helpEmbed ], ephemeral: true })
+        await interaction.reply({ embeds: [ helpEmbed ] })
     }
 }
