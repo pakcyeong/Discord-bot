@@ -38,20 +38,15 @@ module.exports = {
         const firstButton = new ButtonBuilder()
             .setCustomId('dealer')
             .setLabel('참여')
-            .setStyle(ButtonStyle.Primary);
+            .setStyle(ButtonStyle.Success);
 
         const secondButton = new ButtonBuilder()
             .setCustomId('supporter')
             .setLabel('불참')
-            .setStyle(ButtonStyle.Success);
-
-        const thirdButton = new ButtonBuilder()
-            .setCustomId('call')
-            .setLabel('참여자 호출')
             .setStyle(ButtonStyle.Danger);
         
         const rowButtons = new ActionRowBuilder()
-            .addComponents(firstButton, secondButton, thirdButton);
+            .addComponents(firstButton, secondButton);
 
         const resBtn = await interaction.reply({
             embeds:[msgEmbed],
@@ -89,18 +84,6 @@ module.exports = {
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
                 return;
-            }
-
-            else if(interactionBtn.customId === 'call'){
-                if(conditionUp.length >= 1){
-                    const list = '';
-                    conditionUp.map(usr => {
-                        list = list.concat('@', usr, ' ');
-                    })
-                    await interaction.followUp(`${list}`);
-                }else{
-                    await interaction.followUp({ content: '아직 참여자가 모이지 않았습니다.', ephemeral: true });
-                }
             }
         })
     }
