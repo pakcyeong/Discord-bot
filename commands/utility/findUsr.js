@@ -13,7 +13,8 @@ module.exports = {
         ),
     async execute(interaction){
         const usrName = interaction.options.getString('유저명');
-        const usrData = await research(usrName);
+        await research(usrName);
+        // const usrData = await research(usrName);
 
         await interaction.reply({ content: usrName, ephemeral: true })
     }
