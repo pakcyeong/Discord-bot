@@ -59,12 +59,14 @@ module.exports = {
         collectorBtn.on('collect', async interactionBtn => {
             const tmp = msgEmbed.fields[0].value.concat(' ', msgEmbed.fields[1].value);
             const condition = tmp.split(' ');
+            const conditionUp = msgEmbed.fields[0].value.split(' ');
+            const conditionDown = msgEmbed.fields[1].value.split(' ');
 
             // choose dealer
             if(interactionBtn.customId === 'dealer'){
                 if(!condition.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
-                }else if(condition.includes(interactionBtn.user.globalName)){
+                }else if(conditionDown.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.replace(` ${interactionBtn.user.globalName}`,'');
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
                 }
@@ -76,7 +78,7 @@ module.exports = {
             else if(interactionBtn.customId === 'supporter'){
                 if(!condition.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
-                }else if(condition.includes(interactionBtn.user.globalName)){
+                }else if(conditionUp.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.replace(` ${interactionBtn.user.globalName}`,'');
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
                 }
