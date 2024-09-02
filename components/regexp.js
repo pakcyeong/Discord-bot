@@ -1,6 +1,6 @@
 function regexp(string){
     let result = string;
-    const regexpHTML = /(<([^>]+)>[\s]*)|\\r\\n|\\|진화|깨달음|도약/gi;
+    const regexpHTML = /(<([^>]+)>[\s]*)|\\r\\n|\\|진화|깨달음|도약|티어/gi;
     result = result.replace(regexpHTML, '');
 
     const tier = result.split(' ');
