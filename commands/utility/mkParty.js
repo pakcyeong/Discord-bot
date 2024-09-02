@@ -53,7 +53,7 @@ module.exports = {
             components: [rowButtons]
         })
 
-        const collectorBtn = resBtn.createMessageComponentCollector({ ComponentType:ComponentType.Button, time: 36_000_000 })
+        const collectorBtn = resBtn.createMessageComponentCollector({ ComponentType:ComponentType.Button })
 
         // button abled
         collectorBtn.on('collect', async interactionBtn => {
@@ -77,17 +77,6 @@ module.exports = {
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
                 return;
             }
-        })
-
-        //button disabled
-        collectorBtn.on('end', () => {
-            firstButton.setDisabled(true);
-            secondButton.setDisabled(true);
-
-            resBtn.edit({
-                embeds: [msgEmbed],
-                components: [rowButtons]
-            })
         })
     }
 }

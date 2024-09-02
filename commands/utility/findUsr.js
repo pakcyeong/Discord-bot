@@ -4,7 +4,7 @@ const research = require("../../components/research");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('조회')
-        .setDescription()
+        .setDescription('해당 유저의 정보를 조회합니다.')
         .addStringOption(option => 
             option
                 .setName('유저명')
