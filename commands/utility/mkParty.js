@@ -64,6 +64,9 @@ module.exports = {
             if(interactionBtn.customId === 'dealer'){
                 if(!condition.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
+                }else if(condition.includes(interactionBtn.user.globalName)){
+                    msgEmbed.fields[1].value = msgEmbed.fields[1].value.replace(interactionBtn.user.globalName,'');
+                    msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
                 return;
@@ -72,6 +75,9 @@ module.exports = {
             //choose supporter
             else if(interactionBtn.customId === 'supporter'){
                 if(!condition.includes(interactionBtn.user.globalName)){
+                    msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
+                }else if(condition.includes(interactionBtn.user.globalName)){
+                    msgEmbed.fields[0].value = msgEmbed.fields[0].value.replace(interactionBtn.user.globalName,'');
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
