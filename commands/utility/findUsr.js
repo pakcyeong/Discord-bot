@@ -16,6 +16,6 @@ module.exports = {
         await research(usrName);
         // const usrData = await research(usrName);
 
-        await interaction.reply({ content: usrName, ephemeral: true })
+        await interaction.reply({ content: '일단 해봄', ephemeral: true })
     }
 }
