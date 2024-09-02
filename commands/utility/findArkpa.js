@@ -65,8 +65,8 @@ module.exports = {
                         `);
                     }
                 })
+                await interaction.reply({ embeds: [msgEmbed] });
             };
         }
-        await interaction.reply({ embeds: [msgEmbed] })
     }
 }
