@@ -92,10 +92,16 @@ module.exports = {
             }
 
             else if(interactionBtn.customId === 'call'){
-                const list = '';
-                conditionUp.map(usr => {
-
-                })
+                if(conditionUp.length >= 1){
+                    const list = '';
+                    conditionUp.map(usr => {
+                        list = list.concat('@', usr, ' ');
+                    })
+                    await interactionBtn.reply('참여하시는 분들 모여주세요')
+                    await interactionBtn.followUp(`${list}`);
+                }else{
+                    await interactionBtn.reply({ content: '아직 참여자가 모이지 않았습니다.', ephemeral: true })
+                }
             }
         })
     }
