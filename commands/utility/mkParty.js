@@ -1,13 +1,9 @@
 const { 
     SlashCommandBuilder, 
-    StringSelectMenuBuilder, 
-    StringSelectMenuOptionBuilder, 
     ActionRowBuilder, 
-    EmbedBuilder, 
     ComponentType, 
     ButtonBuilder,
-    ButtonStyle,
-    time
+    ButtonStyle
 } = require("discord.js");
 
 module.exports = {
@@ -23,7 +19,7 @@ module.exports = {
     async execute(interaction) {
         const raidName = interaction.options.getString('게임명');
         let msgEmbed = {
-            title: `${raidName}을 함께할 사람을 모집합니다.`,
+            title: `${raidName} 할 사람!`,
             description: `신청 순으로 입력이 됩니다. 선택 후 변경이 되지 않습니다.`,
             author: {
                 name: interaction.user.globalName,
