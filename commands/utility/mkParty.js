@@ -20,7 +20,7 @@ module.exports = {
         const raidName = interaction.options.getString('게임명');
         let msgEmbed = {
             title: `${raidName} 할 사람!`,
-            description: `신청 순으로 입력이 됩니다.`,
+            description: `신청 순으로 입력이 됩니다. @here`,
             author: {
                 name: interaction.user.globalName,
                 icon_url: interaction.user.displayAvatarURL()
