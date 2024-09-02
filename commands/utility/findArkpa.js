@@ -28,9 +28,6 @@ module.exports = {
                     name: `\`포인트\``, value: ``
                 },
                 {
-                    name: '\u200B', value: '\u200B'
-                },
-                {
                     name: `\`진화\``, value: ``, inline: true
                 },
                 {
