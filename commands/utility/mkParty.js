@@ -97,9 +97,9 @@ module.exports = {
                     conditionUp.map(usr => {
                         list = list.concat('@', usr, ' ');
                     })
-                    await interactionBtn.followUp(`${list}`);
+                    await interaction.followUp(`${list}`);
                 }else{
-                    await interactionBtn.followUp({ content: '아직 참여자가 모이지 않았습니다.', ephemeral: true });
+                    await interaction.followUp({ content: '아직 참여자가 모이지 않았습니다.', ephemeral: true });
                 }
             }
         })
