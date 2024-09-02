@@ -48,7 +48,7 @@ module.exports = {
             }
             else {
                 usrData.Points.map(point => {
-                    msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(`${point.Name}: ${point.Value} `);
+                    msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(`${point.Name}: \`${point.Value}\` `);
                 });
 
                 usrData.Effects.map(effect => {
