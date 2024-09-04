@@ -3,7 +3,8 @@ const {
     ActionRowBuilder, 
     ComponentType, 
     ButtonBuilder,
-    ButtonStyle
+    ButtonStyle,
+    AttachmentBuilder
 } = require("discord.js");
 const msgEmbedImg = new AttachmentBuilder('./images/nolza.png');
 
