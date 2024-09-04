@@ -3,10 +3,8 @@ const {
     ActionRowBuilder, 
     ComponentType, 
     ButtonBuilder,
-    ButtonStyle,
-    AttachmentBuilder
+    ButtonStyle
 } = require("discord.js");
-const msgEmbedImg = new AttachmentBuilder('../components/images/nolza.png');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,9 +24,6 @@ module.exports = {
             author: {
                 name: interaction.user.globalName,
                 icon_url: interaction.user.displayAvatarURL(),
-            },
-            image: {
-                url: 'attachment://nolza.png',
             },
             fields: [
                 {
