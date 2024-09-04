@@ -6,7 +6,7 @@ const {
     ButtonStyle,
     AttachmentBuilder
 } = require("discord.js");
-const msgEmbedImg = new AttachmentBuilder('./images/nolza.png');
+const msgEmbedImg = new AttachmentBuilder('./components/images/nolza.png');
 
 module.exports = {
     data: new SlashCommandBuilder()
