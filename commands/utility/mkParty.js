@@ -5,6 +5,7 @@ const {
     ButtonBuilder,
     ButtonStyle
 } = require("discord.js");
+const msgEmbedImg = new AttachmentBuilder('./images/nolza.png');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,13 +18,16 @@ module.exports = {
                 .setRequired(true)
         ),
     async execute(interaction) {
-        const raidName = interaction.options.getString('게임명');
+        const gameName = interaction.options.getString('게임명');
         let msgEmbed = {
-            title: `${raidName} 할 사람!`,
-            description: `신청 순으로 입력이 됩니다.`,
+            title: `놀자에요!`,
+            description: `${gameName} 을/를 할 사람을 모집합니다. @here`,
             author: {
                 name: interaction.user.globalName,
-                icon_url: interaction.user.displayAvatarURL()
+                icon_url: interaction.user.displayAvatarURL(),
+            },
+            image: {
+                url: 'attachment://nolza.png',
             },
             fields: [
                 {
@@ -33,25 +37,23 @@ module.exports = {
                     name: `\`불참\``, value: ``
                 }
             ],
+            footer: {
+                text: '꼭 같이 하자에요'
+            }
         }
 
         const firstButton = new ButtonBuilder()
-            .setCustomId('dealer')
+            .setCustomId('accept')
             .setLabel('참여')
-            .setStyle(ButtonStyle.Primary);
-
-        const secondButton = new ButtonBuilder()
-            .setCustomId('supporter')
-            .setLabel('불참')
             .setStyle(ButtonStyle.Success);
 
-        const thirdButton = new ButtonBuilder()
-            .setCustomId('call')
-            .setLabel('참여자 호출')
+        const secondButton = new ButtonBuilder()
+            .setCustomId('reject')
+            .setLabel('불참')
             .setStyle(ButtonStyle.Danger);
         
         const rowButtons = new ActionRowBuilder()
-            .addComponents(firstButton, secondButton, thirdButton);
+            .addComponents(firstButton, secondButton);
 
         const resBtn = await interaction.reply({
             embeds:[msgEmbed],
@@ -67,8 +69,8 @@ module.exports = {
             const conditionUp = msgEmbed.fields[0].value.split(' ');
             const conditionDown = msgEmbed.fields[1].value.split(' ');
 
-            // choose dealer
-            if(interactionBtn.customId === 'dealer'){
+            // choose accept
+            if(interactionBtn.customId === 'accept'){
                 if(!condition.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
                 }else if(conditionDown.includes(interactionBtn.user.globalName)){
@@ -76,11 +78,10 @@ module.exports = {
                     msgEmbed.fields[0].value = msgEmbed.fields[0].value.concat(' ',interactionBtn.user.globalName);
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
-                return;
             }
 
-            //choose supporter
-            else if(interactionBtn.customId === 'supporter'){
+            //choose reject
+            else if(interactionBtn.customId === 'reject'){
                 if(!condition.includes(interactionBtn.user.globalName)){
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
                 }else if(conditionUp.includes(interactionBtn.user.globalName)){
@@ -88,19 +89,6 @@ module.exports = {
                     msgEmbed.fields[1].value = msgEmbed.fields[1].value.concat(' ',interactionBtn.user.globalName);
                 }
                 await interactionBtn.update({ embeds: [msgEmbed], components: [rowButtons] });
-                return;
-            }
-
-            else if(interactionBtn.customId === 'call'){
-                if(conditionUp.length >= 1){
-                    const list = '';
-                    conditionUp.map(usr => {
-                        list = list.concat('@', usr, ' ');
-                    })
-                    await interaction.followUp(`${list}`);
-                }else{
-                    await interaction.followUp({ content: '아직 참여자가 모이지 않았습니다.', ephemeral: true });
-                }
             }
         })
     }
