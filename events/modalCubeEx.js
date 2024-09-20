@@ -1,7 +1,5 @@
 const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
-const fs = require('fs');
 const cubeExCalc = require("../components/cubeExCalc.js");
-const path = "./components/json/cubeEx.json";
 
 module.exports = {
 	name: Events.InteractionCreate,
