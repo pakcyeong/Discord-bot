@@ -1,18 +1,12 @@
 const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const fs = require('fs');
 const cubeCalc = require("../components/cubeCalc.js");
-const path = "./components/json/cube.json";
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
         const usr = interaction.user.id;
-        const fsData = fs.readFileSync(path, {encoding: 'utf-8', flag: 'r'});
-        const needs = JSON.parse(fsData);
-        let key = '';
-
-        if(Object.hasOwn(needs, usr)) { key = needs[usr] }
-        else { key = ['0','0','0','0','0'] };
+        let key = ['0','0','0','0','0'] ;
 
         if(interaction.commandName === '금제'){
             const modal = new ModalBuilder()
@@ -74,9 +68,6 @@ module.exports = {
                     const cubeThirdValue = modalInteraction.fields.getTextInputValue('cubeThirdInput');
                     const cubeFourthValue = modalInteraction.fields.getTextInputValue('cubeFourthInput');
                     const cubeFivethValue = modalInteraction.fields.getTextInputValue('cubeFivethInput');
-
-                    needs[usr] = [cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue];
-                    fs.writeFileSync(path, JSON.stringify(needs));
 
                     const count = cubeFirstValue*1 + cubeSecondValue*1 + cubeThirdValue*1 + cubeFourthValue*1 + cubeFivethValue*1;
                     const rewards = cubeCalc(cubeFirstValue, cubeSecondValue, cubeThirdValue, cubeFourthValue, cubeFivethValue);

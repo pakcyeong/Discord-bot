@@ -7,12 +7,7 @@ module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
         const usr = interaction.user.id;
-        const fsData = fs.readFileSync(path, {encoding: 'utf-8', flag: 'r'});
-        const needs = JSON.parse(fsData);
-        let key = '';
-
-        if(Object.hasOwn(needs, usr)) { key = needs[usr]; console.log(key); }
-        else { key = '0' };
+        let key = '0';
 
         if(interaction.commandName === '해금'){
             const modal = new ModalBuilder()
@@ -38,9 +33,6 @@ module.exports = {
                 .awaitModalSubmit({ filter, time: 30_000 })
                 .then((modalInteraction) => {
                     const cubeExFirstValue = modalInteraction.fields.getTextInputValue('cubeExFirstInput');
-                    
-                    needs[usr] = cubeExFirstValue;
-                    fs.writeFileSync(path, JSON.stringify(needs));
 
                     const count = cubeExFirstValue*1
                     const rewards = cubeExCalc(cubeExFirstValue);
