@@ -5,7 +5,6 @@ const {
     ButtonBuilder,
     ButtonStyle
 } = require("discord.js");
-const msgEmbedImg = new AttachmentBuilder('./components/images/nolza.png');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,13 +20,10 @@ module.exports = {
         const gameName = interaction.options.getString('게임명');
         let msgEmbed = {
             title: `놀자에요!`,
-            description: `${gameName} 을/를 할 사람을 모집합니다. @here`,
+            description: `\`${gameName}\`을/를 할 사람을 모집합니다. @here`,
             author: {
                 name: interaction.user.globalName,
                 icon_url: interaction.user.displayAvatarURL(),
-            },
-            image: {
-                url: 'attachment://nolza.png',
             },
             fields: [
                 {
