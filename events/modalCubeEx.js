@@ -4,8 +4,7 @@ const cubeExCalc = require("../components/cubeExCalc.js");
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
-        const usr = interaction.user.id;
-        let key = [0, 0];
+        let key = ['0', '0'];
 
         if(interaction.commandName === '해금'){
             const modal = new ModalBuilder()

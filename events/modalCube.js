@@ -4,7 +4,6 @@ const cubeCalc = require("../components/cubeCalc.js");
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
-        const usr = interaction.user.id;
         let key = ['0','0','0','0','0'] ;
 
         if(interaction.commandName === '금제'){
