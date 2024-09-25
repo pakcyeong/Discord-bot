@@ -5,7 +5,7 @@ module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
         const usr = interaction.user.id;
-        let key = '0';
+        let key = [0, 0];
 
         if(interaction.commandName === '해금'){
             const modal = new ModalBuilder()
@@ -16,12 +16,20 @@ module.exports = {
                 .setCustomId('cubeExFirstInput')
                 .setLabel('1해금 큐브')
                 .setStyle(TextInputStyle.Short)
-                .setPlaceholder('1금제 큐브 입장권 개수를 입력하세요.')
-                .setValue(key);
+                .setPlaceholder('1해금 큐브 입장권 개수를 입력하세요.')
+                .setValue(key[0]);
+
+	const cubeExSecondInput = new TextInputBuilder()
+                .setCustomId('cubeExSecondInput')
+                .setLabel('2해금 큐브')
+                .setStyle(TextInputStyle.Short)
+                .setPlaceholder('2해금 큐브 입장권 개수를 입력하세요.')
+                .setValue(key[1]);
             
             const actionRowCubeExFirst = new ActionRowBuilder().addComponents(cubeExFirstInput);
+	const actionRowCubeExSecond = new ActionRowBuilder().addComponents(cubeExSecondInput);
             
-            modal.addComponents(actionRowCubeExFirst);
+            modal.addComponents(actionRowCubeExFirst, actionRowCubeExSecond);
     
             await interaction.showModal(modal);
 
@@ -31,9 +39,10 @@ module.exports = {
                 .awaitModalSubmit({ filter, time: 30_000 })
                 .then((modalInteraction) => {
                     const cubeExFirstValue = modalInteraction.fields.getTextInputValue('cubeExFirstInput');
+		const cubeExSecondValue = modalInteraction.fields.getTextInputValue('cubeExSecondInput');
 
-                    const count = cubeExFirstValue*1
-                    const rewards = cubeExCalc(cubeExFirstValue);
+                    const count = cubeExFirstValue*1 + cubeExSecondValue*1
+                    const rewards = cubeExCalc(cubeExFirstValue, cubeExSecondValue);
 
                     const cubeExEmbed = new EmbedBuilder()
                         .setTitle('큐브 (T4) 예상 보상')
